@@ -40,11 +40,21 @@ export const AccountSettings: React.FC = () => {
   };
 
   const handleConnect = async (source: NotificationSource) => {
-    // In a real app, this would initiate OAuth flow
-    updateAccounts({
-      ...accounts,
-      [source]: { ...accounts[source], connected: true },
-    });
+    const email = accounts[source].email;
+    try {
+      // Send email and source to backend
+      await fetch('/api/connect', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ source, email }),
+      });
+      updateAccounts({
+        ...accounts,
+        [source]: { ...accounts[source], connected: true },
+      });
+    } catch (err) {
+      alert('Failed to connect. Please try again.');
+    }
   };
 
   const handleDisconnect = async (source: NotificationSource) => {
