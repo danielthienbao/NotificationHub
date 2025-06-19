@@ -1,10 +1,6 @@
 # NotificationHub
 
-A unified notification center that aggregates and displays notifications from multiple sources including:
-- Gmail
-- Outlook
-- iPhone Mail
-- Slack
+A full-stack dashboard that collects and displays notifications from Gmail, Outlook, iPhone, and Slack in one place.
 
 ## Features
 - Real-time notification updates
